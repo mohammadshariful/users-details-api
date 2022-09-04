@@ -2,10 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
-
+const usersRoute = require("./routes/v1/users.route");
 //middleware
 app.use(express.json());
 app.use(cors());
+
+app.use("/api/v1/user", usersRoute);
 
 //create root api
 app.get("/", (req, res) => {
