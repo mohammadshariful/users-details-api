@@ -26,6 +26,31 @@ module.exports.saveUserData = (req, res) => {
   } else {
     existUser.push(userInfo);
     saveUserData(existUser);
-    return res.send(existUser);
+    res.send({
+      success: true,
+      msg: "User info added successfully",
+      data: users,
+    });
+  }
+};
+// update a random user info
+module.exports.updateRandomUser = (req, res) => {
+  const userData = req.body;
+  const users = getUsersData();
+  const userIndex = Math.floor(Math.random() * users.length);
+  const randomUser = users[userIndex];
+  let findExist = users.find((user) => user._id === randomUser._id);
+
+  if (!findExist) {
+    return res.status(409).send({ error: true, msg: "user not exist" });
+  } else {
+    findExist = userData;
+    users.push(findExist);
+    saveUserData(users);
+    return res.send({
+      success: true,
+      msg: "random user data updated successfully",
+      data: users,
+    });
   }
 };
