@@ -29,7 +29,6 @@ module.exports.saveUserData = (req, res) => {
     res.send({
       success: true,
       msg: "User info added successfully",
-      data: users,
     });
   }
 };
@@ -53,4 +52,18 @@ module.exports.updateRandomUser = (req, res) => {
       data: users,
     });
   }
+};
+// delete a user
+module.exports.deleteUser = (req, res) => {
+  const users = getUsersData();
+  const userIndex = Math.floor(Math.random() * users.length);
+  const randomUser = users[userIndex];
+  const restUsers = users.filter((user) => user._id !== randomUser._id);
+
+  saveUserData(restUsers);
+  res.send({
+    success: true,
+    msg: "delete a users successfully",
+    data: restUsers,
+  });
 };
