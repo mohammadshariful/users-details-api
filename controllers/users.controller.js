@@ -7,8 +7,13 @@ module.exports.getRandomUser = (req, res) => {
 };
 // get all user controller
 module.exports.getAllUsers = (req, res) => {
+  const { limit } = req.query;
   const users = getUsersData();
-  res.send(users);
+  if (limit) {
+    return res.send(users.slice(0, limit));
+  } else {
+    return res.send(users);
+  }
 };
 // save user data  controller
 module.exports.saveUserData = (req, res) => {
