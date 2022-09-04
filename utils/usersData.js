@@ -1,12 +1,12 @@
 const fs = require("fs");
 const dataPath = "users.json";
 
-module.exports.getUserData = () => {
+module.exports.getUsersData = () => {
   const jsonData = fs.readFileSync(dataPath);
   return JSON.parse(jsonData);
 };
 
-module.exports.saveUsers = (data) => {
+module.exports.saveUserData = (data) => {
   const stringifyData = JSON.stringify(data);
   fs.writeFileSync(dataPath, stringifyData);
 };
