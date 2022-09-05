@@ -8,7 +8,7 @@
   ],
   "routes": [
     {
-      "routes/v1/users.route.js": "/(.*)",
+      "src": "/(.*)",
       "dest": "/"
     }
   ]
